@@ -1,0 +1,65 @@
+<html>
+	<head>
+	    <style>
+			#canvas {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="360" height="350"></canvas><br/>
+
+		<!-- buttons hooked up to javascript functions -->
+		<a href="#" onclick="animateBunny();">Animate bunny</a>
+		
+		<a href="#" onclick="Ticker.start();">start ticker</a>
+		<a href="#" onclick="Ticker.stop();">stop ticker</a>
+		
+		<script src="../lib/Ticker.js"></script>
+	  <script src="../lib/Tween.js"></script>
+	    
+		<script>
+			// Get the canvas dom and drawing context
+			var canvas = document.getElementById("canvas"),
+				ctx = canvas.getContext("2d");
+			
+			// images
+			var bunnyImg = new Image();
+			
+			bunnyImg.src = "bunny.png";
+			
+			var bunny = {
+				image: bunnyImg,
+				x: 20, 
+				y: 100, 
+				w: 160, 
+				h: 160
+			}
+			
+			ctx.fillStyle = "#000000";
+			
+			function draw() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(bunny.image, bunny.x, bunny.y, bunny.w, bunny.h);
+			}
+			
+			
+			function animateBunny() {
+				// Tween class with chainable api, try messing around with the x, y, w, h properties
+				new Tween(bunny)
+				.to({y: 60}, 600, Tween.ease.easeOut)
+				.to({y: 100}, 1000, Tween.ease.bounceOut);
+			}
+			
+			// Allow the draw function to be called on every 'tick'
+			Ticker.addListener(draw);
+			
+			// Debug
+			Ticker.addListener(function(dt) {
+				
+			})
+		</script>
+		
+	</body>
+</html>

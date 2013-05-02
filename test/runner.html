@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Tweenr tests</title>
+    
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="lib/mocha/mocha.css" />
+   
+	<!-- <script src="lib/appmobi_local_bootstrap.js"></script> -->
+	<script>
+		// debug mode off to prevent console logs
+		window.DEBUG_MODE = false;
+		
+		// global draw context
+	</script>
+</head>
+<body>
+    <div id="mocha"></div>
+
+    <!-- test dependencies -->
+	<script src="lib/mocha/mocha.js"></script>
+	<script src="lib/chai/chai.js"></script>
+	<script src="lib/sinon/sinon.js"></script>
+ 	
+	<script>
+		mocha.setup({ui: 'bdd'});
+
+		// provide global should assertion object
+		window.should = chai.should();
+	mocha.globals(['should', 'sinon']);
+
+	</script>
+	
+	<!-- Code to test -->
+	<script src="../lib/DisplayObject.js"></script>
+	<script src="../lib/Stage.js"></script>
+	<script src="../lib/Ticker.js"></script>
+	<script src="../lib/Tween.js"></script>
+
+	<!-- Test suites -->
+	<script src="Tweenr.DisplayObject.js"></script>
+	<script src="Tweenr.Stage.js"></script>
+	<script src="Tweenr.Ticker.js"></script>
+	<script src="Tweenr.Tween.js"></script>
+
+	<script>      
+		if (window.mochaPhantomJS) {
+			mochaPhantomJS.run();
+		}
+	    else {
+	    	var runner = mocha.run();
+		}
+	</script> 
+</body>
+</html>
